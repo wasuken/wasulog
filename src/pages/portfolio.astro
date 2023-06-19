@@ -1,0 +1,90 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../config";
+const portfolioList = [
+  {
+    name: "ibox",
+    url: "https://github.com/wasuken/ibox",
+    imageurl: "/ss/ibox.png",
+    description: "画像アップローダー。ユーザー認証とかは特に無い",
+  },
+  {
+    name: "cvedit",
+    url: "https://cvedit.netlify.app/",
+    imageurl: "/ss/cvedit.png",
+    description: "CSVを編集できるやつ",
+  },
+];
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <style>
+      .title {
+        text-align: center;
+        color: #333;
+      }
+
+      .portfolio-item {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 30px;
+      }
+
+      .portfolio-item-card {
+        max-width: 400px;
+        background-color: #fff;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        border-radius: 4px;
+        margin: 15px;
+        padding: 20px;
+      }
+
+      .portfolio-item-card a {
+        text-decoration: none;
+        color: #333;
+      }
+
+      .portfolio-item-card img {
+        width: 100%;
+        border-radius: 4px;
+        margin-bottom: 15px;
+      }
+
+      .portfolio-item-card h3 {
+        font-size: 18px;
+        margin-bottom: 10px;
+      }
+
+      .portfolio-item-card p {
+        color: #777;
+      }
+    </style>
+  </head>
+  <body>
+    <Header />
+    <main>
+      <section>
+        {
+          portfolioList.map((pf) => (
+            <div class="portfolio-item">
+              <div class="portfolio-item-card">
+                <a href={pf.url}>
+                  <img src={pf.imageurl} alt={pf.name} />
+                  <h3>{pf.name}</h3>
+                  <p>{pf.description}</p>
+                </a>
+              </div>
+            </div>
+          ))
+        }
+      </section>
+    </main>
+    <Footer />
+  </body>
+</html>
