@@ -11,6 +11,8 @@ const posts = (await Astro.glob('../blog/**/*.{md,mdx}'))
 .sort(
 (a, b) => b.frontmatter.title - a.frontmatter.title ? 1 : -1
 );
+console.log(posts.pop().frontmatter)
+console.log(posts.pop().getHeading);
 
 export async function getStaticPaths() {
   return [
